@@ -1,0 +1,39 @@
+<div class="employee-form container mt-4">
+    <h2>Add Employee</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div
+          class="col-md-6 mb-3"
+          *ngFor="let field of ['first_name','last_name','email','gender','designation','salary','date_of_joining','department']"
+        >
+          <label class="form-label">{{ field.replace('_', ' ') | titlecase }}</label>
+          <input
+            class="form-control"
+            [type]="field === 'salary' ? 'number' : field === 'date_of_joining' ? 'date' : 'text'"
+            [formControlName]="field"
+          />
+        </div>
+      </div>
+  
+      <!-- ✅ File Upload Input for Employee Photo -->
+      <div class="mb-3">
+        <label class="form-label">Employee Photo</label>
+        <input class="form-control" type="file" (change)="onFileChange($event)" />
+      </div>
+  
+      <div *ngIf="form.value.employee_photo" class="mb-3">
+        <p class="text-muted">Photo Preview:</p>
+        <img
+          [src]="form.value.employee_photo"
+          alt="Employee Photo"
+          class="img-thumbnail"
+          style="max-height: 150px;"
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-success">Add Employee</button>
+      <p *ngIf="error" class="text-danger mt-2">{{ error }}</p>
+    </form>
+  </div>
+  

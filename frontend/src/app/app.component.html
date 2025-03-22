@@ -1,0 +1,8 @@
+<nav class="navbar">
+  <a routerLink="/employees">Employees</a>
+  <a routerLink="/login">Login</a>
+  <a routerLink="/signup">Signup</a>
+  <button *ngIf="auth.isLoggedIn()" (click)="logout()" class="btn btn-danger">Logout</button>
+</nav>
+
+<router-outlet></router-outlet>

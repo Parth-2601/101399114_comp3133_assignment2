@@ -1,0 +1,16 @@
+<div class="employee-detail" *ngIf="employee">
+    <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+    <img *ngIf="employee.employee_photo" [src]="employee.employee_photo" alt="Photo" class="img-thumbnail mb-3" style="max-width: 150px;" />
+  
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Email:</strong> {{ employee.email }}</li>
+      <li class="list-group-item"><strong>Gender:</strong> {{ employee.gender }}</li>
+      <li class="list-group-item"><strong>Designation:</strong> {{ employee.designation }}</li>
+      <li class="list-group-item"><strong>Department:</strong> {{ employee.department }}</li>
+      <li class="list-group-item"><strong>Salary:</strong> ${{ employee.salary }}</li>
+      <li class="list-group-item"><strong>Date of Joining:</strong> {{ employee.date_of_joining | date }}</li>
+    </ul>
+  </div>
+  
+  <p *ngIf="error" class="text-danger mt-3">{{ error }}</p>
+  

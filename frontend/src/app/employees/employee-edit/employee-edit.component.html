@@ -1,0 +1,16 @@
+<div class="employee-form">
+    <h2>Edit Employee</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6" *ngFor="let field of ['first_name','last_name','email','designation','salary','department']">
+          <label>{{ field.replace('_', ' ') | titlecase }}</label>
+          <input formControlName="{{ field }}" class="form-control" [type]="field === 'salary' ? 'number' : 'text'" />
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-3">Update Employee</button>
+      <p *ngIf="error" class="text-danger mt-2">{{ error }}</p>
+    </form>
+  </div>
+  
