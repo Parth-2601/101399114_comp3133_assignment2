@@ -23,6 +23,12 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 export const appConfig = [
   provideRouter(appRoutes),
   provideAnimations(),
-  provideHttpClient()
+  provideHttpClient(),
+  {
+    provide: APOLLO_OPTIONS,
+    useFactory: createApollo,
+    deps: [HttpLink]
+  }
 ];
+
 

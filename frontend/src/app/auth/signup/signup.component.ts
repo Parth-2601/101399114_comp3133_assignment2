@@ -23,6 +23,11 @@ export class SignupComponent {
     });
   }
 
+  goTo(route: string): void {
+    this.router.navigate([route]);
+  }
+
+
   onSubmit() {
     const { username, email, password } = this.signupForm.value;
     this.auth.signup(username, email, password).subscribe({

@@ -1,16 +1,21 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label>Username or Email</label>
-        <input formControlName="username" type="text" class="form-control" />
+<div class="portal-container">
+  <div class="portal-content">
+    <h2 class="portal-title portal-title-left">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="portal-form">
+      <div class="form-group">
+        <label for="username" class="form-label">Username or Email</label>
+        <input id="username" formControlName="username" type="text" class="form-input" />
       </div>
-      <div>
-        <label>Password</label>
-        <input formControlName="password" type="password" class="form-control" />
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" formControlName="password" type="password" class="form-input" />
       </div>
-      <button type="submit" class="btn btn-primary mt-3">Login</button>
-      <p class="text-danger mt-2" *ngIf="error">{{ error }}</p>
+      <button type="submit" class="portal-button primary">Login</button>
+      <p class="error-message" *ngIf="error">{{ error }}</p>
     </form>
+    <div class="account-row">
+      <span class="account-text">Don't have an account?</span>
+      <button class="signup-link" (click)="goTo('signup')">Signup</button>
+    </div>
   </div>
-  
+</div>

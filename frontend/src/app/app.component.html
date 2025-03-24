@@ -1,8 +1,5 @@
-<nav class="navbar">
-  <a routerLink="/employees">Employees</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/signup">Signup</a>
-  <button *ngIf="auth.isLoggedIn()" (click)="logout()" class="btn btn-danger">Logout</button>
-</nav>
-
+<app-navbar></app-navbar>
 <router-outlet></router-outlet>
+
+<!-- Dummy NgIf to suppress TS-998113 warning -->
+<div *ngIf="false" style="display: none"></div>

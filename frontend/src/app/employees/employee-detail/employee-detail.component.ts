@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { EmployeeService } from '../employee.service';
 
 @Component({
@@ -14,7 +14,11 @@ export class EmployeeDetailComponent implements OnInit {
   employee: any = null;
   error = '';
 
-  constructor(private route: ActivatedRoute, private empService: EmployeeService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router, 
+    private empService: EmployeeService
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -24,5 +28,9 @@ export class EmployeeDetailComponent implements OnInit {
       },
       error: (err) => this.error = err.message
     });
+  }
+
+  goBack(): void {
+    this.router.navigate(['/employees']);
   }
 }

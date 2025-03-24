@@ -62,9 +62,12 @@ export const SEARCH_EMPLOYEE_BY_FILTER = gql`
       id
       first_name
       last_name
+      email
       designation
       department
+      salary
     }
   }
 `;
+
 

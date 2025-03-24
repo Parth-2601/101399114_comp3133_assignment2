@@ -14,6 +14,7 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeAddComponent {
   form: FormGroup;
   error = '';
+  uploading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -29,30 +30,45 @@ export class EmployeeAddComponent {
       salary: [0],
       date_of_joining: [''],
       department: [''],
-      employee_photo: [''] // base64 will be stored here
+      employee_photo: [''] // will hold the uploaded filename
     });
   }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
+    if (!file) return;
 
-    reader.onload = () => {
-      this.form.patchValue({
-        employee_photo: reader.result // base64 string
+    this.uploading = true;
+    const formData = new FormData();
+    formData.append('photo', file);
+
+    fetch('http://localhost:4000/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.form.patchValue({ employee_photo: data.filename });
+        this.uploading = false;
+      })
+      .catch(() => {
+        this.error = 'Image upload failed';
+        this.uploading = false;
       });
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
   }
 
   onSubmit() {
     const data = this.form.value;
+  
+    // ✅ Ensure proper types before sending to backend
+    data.salary = parseFloat(data.salary);
+    data.date_of_joining = new Date(data.date_of_joining).toISOString();
+  
+    console.log('Sending:', data); // Optional: debug log
+  
     this.empService.add(data).subscribe({
       next: () => this.router.navigate(['/employees']),
       error: (err) => this.error = err.message
     });
   }
-}
+}  

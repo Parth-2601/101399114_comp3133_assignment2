@@ -1,8 +1,9 @@
-<div class="d-flex flex-column align-items-center justify-content-center vh-100">
-    <h2>Welcome to Employee Portal</h2>
-    <div class="mt-4">
-      <button class="btn btn-primary me-3" (click)="goTo('login')">Login</button>
-      <button class="btn btn-secondary" (click)="goTo('signup')">Signup</button>
+<div class="portal-container">
+  <div class="portal-content">
+    <h2 class="portal-title">Employee Management</h2>
+    <div class="portal-actions">
+      <button class="portal-button primary" (click)="goTo('login')">Login</button>
+      <button class="portal-button secondary" (click)="goTo('signup')">Signup</button>
     </div>
   </div>
-  
+</div>

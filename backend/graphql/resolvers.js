@@ -38,8 +38,8 @@ const resolvers = {
 
     // **Get All Employees Query**
     getAllEmployees: async (_, __, { req }) => {
-      await authenticate(req);
-      return await Employee.find();
+      const userId = authenticate(req);
+      return await Employee.find({ created_by: userId });
     },
 
     // **Search Employee by ID**
@@ -66,36 +66,34 @@ const resolvers = {
   },
 
   Mutation: {
-    // **Signup Mutation**
     signup: async (_, { username, email, password }) => {
-      // Validate input
-      const errors = validationResult({ username, email, password });
-      if (!errors.isEmpty()) {
-        throw new Error(errors.array().map(err => err.msg).join(', '));
-      }
-
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error('User already exists');
-
+  
       const user = new User({ username, email, password });
       await user.save();
       return user;
     },
-
-    // **Add Employee Mutation**
+    
     addEmployee: async (_, args, { req }) => {
-      await authenticate(req);
-
-      // Validate input
-      const errors = validationResult(args);
-      if (!errors.isEmpty()) {
-        throw new Error(errors.array().map(err => err.msg).join(', '));
+      const userId = authenticate(req);
+    
+      const requiredFields = [
+        'first_name', 'last_name', 'email', 'gender',
+        'designation', 'salary', 'date_of_joining', 'department'
+      ];
+      for (const field of requiredFields) {
+        if (!args[field]) throw new Error(`Missing field: ${field}`);
       }
-
-      const employee = new Employee(args);
+    
+      args.salary = parseFloat(args.salary);
+      args.date_of_joining = new Date(args.date_of_joining);
+    
+      const employee = new Employee({ ...args, created_by: userId });
       return await employee.save();
     },
-
+    
+    
     // **Update Employee Mutation**
     updateEmployee: async (_, { eid, ...updates }, { req }) => {
       await authenticate(req);

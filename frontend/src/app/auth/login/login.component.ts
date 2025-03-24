@@ -15,11 +15,19 @@ export class LoginComponent {
   loginForm: FormGroup;
   error: string = '';
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       username: [''],
       password: ['']
     });
+  }
+
+  goTo(route: string): void {
+    this.router.navigate([route]);
   }
 
   onSubmit() {

@@ -1,9 +1,121 @@
 .employee-detail {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 
+              0 1px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employee-detail:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 
+              0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.employee-detail h2 {
+  color: #1a365d;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #1a365d 0%, #3a689b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 2px 4px rgba(26, 54, 93, 0.1);
+}
+
+.img-thumbnail {
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.03);
+}
+
+.list-group {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.list-group-item {
+  padding: 1rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: rgba(76, 110, 245, 0.05);
+}
+
+.list-group-item strong {
+  color: #2c3e50;
+  font-weight: 600;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.text-danger {
+  color: #dc3545;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin-top: 2rem;
+  background-color: #1a365d;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+  background-color: #2a4a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .employee-detail {
+    padding: 1.5rem;
   }
   
+  .employee-detail h2 {
+    font-size: 1.75rem;
+  }
+  
+  .list-group-item {
+    padding: 0.75rem 1rem;
+  }
+  
+  .list-group-item strong {
+    min-width: 100px;
+  }
+}
