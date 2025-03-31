@@ -1,12 +1,16 @@
 <div class="employee-detail" *ngIf="employee">
   <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+
   <img
     *ngIf="employee.employee_photo"
-    [src]="'http://localhost:4000/uploads/' + employee.employee_photo"
-    alt="Photo"
+    [src]="employee.employee_photo"
+    alt="Employee Photo"
     class="img-thumbnail mb-3"
-    style="max-width: 150px;"
+    style="max-height: 150px; max-width: 150px; object-fit: cover;"
   />
+
+
+
 
   <ul class="list-group">
     <li class="list-group-item"><strong>Email:</strong> {{ employee.email }}</li>

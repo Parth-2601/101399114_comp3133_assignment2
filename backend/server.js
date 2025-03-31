@@ -7,17 +7,13 @@ require('dotenv').config();
 
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
-const uploadRoute = require('./upload');
+
 
 const app = express();
 app.use(cors()); // ✅ Enable CORS for all origins
 app.use(express.json());
 
-// ✅ Serve uploaded images statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ✅ Upload API route
-app.use('/api/upload', uploadRoute);
 
 const server = new ApolloServer({
   typeDefs,
@@ -35,9 +31,9 @@ server.start().then(() => {
     .then(() => console.log('✅ MongoDB Connected Successfully'))
     .catch(err => console.error('❌ MongoDB Connection Failed:', err));
 
-  app.listen(process.env.PORT || 4000, () => {
-    console.log(`🚀 Server running at http://localhost:4000${server.graphqlPath}`);
-    console.log(`📂 Uploads served at http://localhost:4000/uploads`);
-    console.log(`📤 File upload API at http://localhost:4000/api/upload`);
-  });
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
+    });
+    
 });

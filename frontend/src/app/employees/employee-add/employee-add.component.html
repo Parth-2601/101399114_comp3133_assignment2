@@ -1,5 +1,5 @@
 <div class="employee-form container mt-4">
-  <h2>Add Employee</h2>
+  <h2 class="mb-4">Add Employee</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -14,16 +14,26 @@
           [formControlName]="field"
         />
       </div>
-    </div>
 
-    <div class="col-md-6 mb-3">
-      <label class="form-label">Employee Photo</label>
-      <input class="form-control" type="file" (change)="onFileChange($event)" />
-    </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Employee Photo URL</label>
+        <input
+          type="url"
+          class="form-control"
+          formControlName="employee_photo"
+          placeholder="Enter image URL"
+        />
+      </div>
 
-    <div *ngIf="form.value.employee_photo" class="mb-3">
-      <p class="text-muted">Photo Preview:</p>
-      <img [src]="'http://localhost:4000/uploads/' + form.value.employee_photo" class="img-thumbnail" style="max-height: 150px;" />
+      <div *ngIf="form.value.employee_photo" class="col-md-6 mb-3">
+        <p class="text-muted">Photo Preview:</p>
+        <img
+          [src]="form.value.employee_photo"
+          alt="Employee Photo"
+          class="img-thumbnail"
+          style="max-height: 150px; max-width: 150px; object-fit: cover;"
+        />
+      </div>
     </div>
 
     <button type="submit" class="btn btn-success">Add Employee</button>
