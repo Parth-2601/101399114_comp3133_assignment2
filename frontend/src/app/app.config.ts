@@ -12,7 +12,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
     cache: new InMemoryCache(),
     link: httpLink.create({
-      uri: 'https://backend-ifz6a10br-milans-projects-dfa726a2.vercel.app/graphql',
+      uri: 'https://employee-backend-orv9.onrender.com/graphql',
       headers: new HttpHeaders({
         Authorization: `Bearer ${localStorage.getItem('token') || ''}`
       })

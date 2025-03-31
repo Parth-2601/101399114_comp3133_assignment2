@@ -4,7 +4,6 @@
     </div>
     <div class="navbar-right">
       @if (isLoggedIn) {
-        <a routerLink="/employees" class="navbar-link">Employee List</a>
         <button (click)="logout()" class="navbar-button">Logout</button>
       } @else {
         <a routerLink="/login" class="navbar-link">Login</a>

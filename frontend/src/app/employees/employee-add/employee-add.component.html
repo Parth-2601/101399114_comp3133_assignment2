@@ -3,36 +3,32 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div
-        class="col-md-6 mb-3"
-        *ngFor="let field of ['first_name','last_name','email','gender','designation','salary','date_of_joining','department']"
-      >
+      <div class="col-md-6 mb-3"
+        *ngFor="let field of ['first_name','last_name','email','gender','designation','salary','date_of_joining','department']">
         <label class="form-label">{{ field.replace('_', ' ') | titlecase }}</label>
-        <input
-          class="form-control"
+
+        <select *ngIf="field === 'gender'" class="form-control" [formControlName]="field">
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <input *ngIf="field !== 'gender'" class="form-control"
           [type]="field === 'salary' ? 'number' : field === 'date_of_joining' ? 'date' : 'text'"
-          [formControlName]="field"
-        />
+          [formControlName]="field" />
       </div>
+
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Employee Photo URL</label>
-        <input
-          type="url"
-          class="form-control"
-          formControlName="employee_photo"
-          placeholder="Enter image URL"
-        />
+        <input type="url" class="form-control" formControlName="employee_photo" placeholder="Enter image URL" />
       </div>
 
       <div *ngIf="form.value.employee_photo" class="col-md-6 mb-3">
         <p class="text-muted">Photo Preview:</p>
-        <img
-          [src]="form.value.employee_photo"
-          alt="Employee Photo"
-          class="img-thumbnail"
-          style="max-height: 150px; max-width: 150px; object-fit: cover;"
-        />
+        <img [src]="form.value.employee_photo" alt="Employee Photo" class="img-thumbnail"
+          style="max-height: 150px; max-width: 150px; object-fit: cover;" />
       </div>
     </div>
 
